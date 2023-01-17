@@ -1,6 +1,6 @@
 # Home Assignment for the Junior applicatioan integration role
 
-Step 1: build a Jenkins server on AWS env using EC2
+## Step 1: build a Jenkins server on AWS env using EC2
 
 a.Launch an EC2 instance and select the appropriate instance type(t2.micro).
 b.Make sure the security group for your EC2 instance has an inbound rule for TCP port 8080, which is the default port that Jenkins uses.
@@ -49,4 +49,17 @@ Check the jenkins service status:
 ```
 systemctl status jenkins
 ```
+![image](https://user-images.githubusercontent.com/106589153/212835067-b750af5c-cb5e-44c7-b01d-70c34e46778f.png)
+
+## Step 2: Access Jenkins Server on EC2
+a. Web console can be accessed on:
+http://44.202.218.107:8080
+b. the default login password is store in this file:
+```
+$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+cf7c4824450c442cb9c8add2b03229ad
+```
+c. Copy the password and paste it in the jenkins setup wizard page
+d. Choose "install suggested plugins" option.
+e. Create first administartor user:
 
