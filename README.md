@@ -66,3 +66,21 @@ e. Create first administartor user:
 ![image](https://user-images.githubusercontent.com/106589153/212836782-83e2f882-21c0-4fb1-b1e0-5c5e094b3b4d.png)
 f. Create jenkins Url(in my case i route it to the int college url)
 ![image](https://github.com/SharonLeviDevops/CloudOpsExr/blob/8f48492687c5cff95d243c84845dee016a0c44a7/url.JPG)
+
+## Step 3:  pull the Nginx image from the Docker Hub and run it on a Jenkins server:
+a. install docker on the jenkins server:
+```
+sudo yum install docker
+```
+b. Enable docker service at AMI boot time:
+```
+sudo systemctl enable docker.service
+```
+c. Start the Docker service
+```
+sudo systemctl start docker.service
+```
+d. Check the docker service status:
+```
+sudo systemctl status docker.service
+```
