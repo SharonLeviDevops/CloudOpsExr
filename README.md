@@ -3,6 +3,7 @@
 ## Step 1: build a Jenkins server on AWS env using EC2
 
 a.Launch an EC2 instance and select the appropriate instance type(t2.micro).
+
 b.Make sure the security group for your EC2 instance has an inbound rule for TCP port 8080, which is the default port that Jenkins uses.
 ![image](https://user-images.githubusercontent.com/106589153/212828879-4e6bbea7-68df-4af6-8270-1b5371cc01b3.png)
 c.Install Jenkins: Run the following commands to install Jenkins on the EC2 instance:
@@ -97,3 +98,5 @@ g. Check the container is running:
 ```
 sudo docker ps
 ```
+![image](https://user-images.githubusercontent.com/106589153/212843395-3243f69e-e09a-49ba-8acf-f036480cdff5.png)
+h. b.Make sure the security group for your EC2 instance has an inbound rule for TCP port 80, which is the default port that nginx uses.
