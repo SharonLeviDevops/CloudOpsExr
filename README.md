@@ -2,16 +2,51 @@
 
 Step 1: build a Jenkins server on AWS env using EC2
 
-1.Launch an EC2 instance and select the appropriate instance type(t2.micro).
-
-2.Install Jenkins: Run the following commands to install Jenkins on the EC2 instance:
+a.Launch an EC2 instance and select the appropriate instance type(t2.micro).
+b.Make sure the security group for your EC2 instance has an inbound rule for TCP port 8080, which is the default port that Jenkins uses.
+![image](https://user-images.githubusercontent.com/106589153/212828879-4e6bbea7-68df-4af6-8270-1b5371cc01b3.png)
+c.Install Jenkins: Run the following commands to install Jenkins on the EC2 instance:
 ```
 sudo yum update -y
-sudo yum install java-1.8.0-openjdk-devel -y
-sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-sudo yum install jenkins -y
+sudo systemctl reboot
+sudo amazon-linux-extras install java-openjdk11(Hit the y key in your keyboard when asked before installation commences)
+```
+Add Jenkins repository to the ec2:
+```
+sudo tee /etc/yum.repos.d/jenkins.repo<<EOF
+[jenkins]
+name=Jenkins
+baseurl=http://pkg.jenkins.io/redhat
+gpgcheck=0
+EOF
+```
+Import GPG repository key.
+```
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+```
+Update the list of repositories to confirm it is working.
+```
+$ sudo yum repolist
+Loaded plugins: langpacks, priorities, update-motd
+jenkins                                                                                                                                    | 2.9 kB  00:00:00
+jenkins/primary_db                                                                                                                         | 161 kB  00:00:00
+repo id                                                                     repo name                                                                       status
+amzn2-core/2/x86_64                                                         Amazon Linux 2 core repository                                                  22,852
+amzn2extra-docker/2/x86_64                                                  Amazon Extras repo for docker                                                       36
+amzn2extra-java-openjdk11/2/x86_64                                          Amazon Extras repo for java-openjdk11                                               64
+jenkins         
+```
+Install jenkins server on ec2
+```
+sudo yum install jenkins
+```
+Start and enable the jenkins service
+```
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
+```
+Check the jenkins service status:
+```
+systemctl status jenkins
 ```
 
