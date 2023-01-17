@@ -63,3 +63,6 @@ c. Copy the password and paste it in the jenkins setup wizard page
 d. Choose "install suggested plugins" option.
 e. Create first administartor user:
 
+![image](https://user-images.githubusercontent.com/106589153/212836782-83e2f882-21c0-4fb1-b1e0-5c5e094b3b4d.png)
+f. Create jenkins Url(in my case i route it to the int college url)
+
