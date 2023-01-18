@@ -85,18 +85,3 @@ d. Check the docker service status:
 ```
 sudo systemctl status docker.service
 ```
-![image](https://user-images.githubusercontent.com/106589153/212841942-0b121385-16e9-4622-8a03-5ac284db7534.png)
-e. Pull the Nginx image from the Docker Hub: 
-```
-sudo docker pull nginx
-```
-f. Run the Nginx container such that it starts automatically when the EC2 is launches and expose it to port 80:
-```
-sudo docker run -d -p 80:80 --name nginx --restart always nginx
-```
-g. Check the container is running:
-```
-sudo docker ps
-```
-![image](https://user-images.githubusercontent.com/106589153/212843395-3243f69e-e09a-49ba-8acf-f036480cdff5.png)
-h. b.Make sure the security group for your EC2 instance has an inbound rule for TCP port 80, which is the default port that nginx uses.
