@@ -137,4 +137,8 @@ pipeline {
 d. Click "Save"
 e. Select "Build Now" from the left menu 
 f. Make sure the build run successfully(each step will turn to green color)
+![image](https://user-images.githubusercontent.com/106589153/213133553-a798a337-acb6-441e-86c6-5ef8958160da.png)
+
+## Step 5: Check the final result in the nginx web page , printing the current timestamp in UTC.
+![image](https://user-images.githubusercontent.com/106589153/213134100-5973659a-ed17-4071-9a1f-6429d203ad86.png)
 
