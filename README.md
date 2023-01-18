@@ -68,7 +68,7 @@ e. Create first administartor user:
 f. Create jenkins Url(in my case i route it to the int college url)
 ![image](https://github.com/SharonLeviDevops/CloudOpsExr/blob/8f48492687c5cff95d243c84845dee016a0c44a7/url.JPG)
 
-## Step 3:  pull the Nginx image from the Docker Hub and run it on a Jenkins server:
+## Step 3:  Docker Installation on ec2:
 a. install docker on the jenkins server:
 ```
 sudo yum install docker
@@ -85,3 +85,56 @@ d. Check the docker service status:
 ```
 sudo systemctl status docker.service
 ```
+## Step 4: Create jenkins 3 steps pipeline:
+a. From the main menu select "New"
+b. Enter an item name and choose the "Pipeline" option
+c. Write the following script in the pipeline section(in the bottom of the page)
+```
+pipeline {
+    agent any
+    stages {
+        stage('stop container & Clean Images') {
+            steps {
+                script {
+                    sh 'docker stop nginx'
+	                sh 'docker rm nginx' 
+	                sh 'docker rmi nginx'
+                }
+            }
+        }
+        stage('Pull Image') {
+            steps {
+                script {
+                    docker.image('nginx').pull()
+                }
+            }
+        }
+        stage('Run Image') {
+            steps {
+                script {
+                    sh 'docker run -d --name nginx -p 8081:80 -d --restart unless-stopped nginx'
+                }
+            }
+        }
+        stage('Update index.html') {
+            steps {
+                script {
+                    sh 'docker exec $(docker ps -q) bash -c "echo The current time in UTC is: $(date -u) > /usr/share/nginx/html/index.html"'
+                }
+            }
+        }
+        stage('Test Health') {
+            steps {
+                script {
+                    sh 'curl -k -X GET http://localhost:8081'
+                }
+            }
+        }
+
+    }
+}
+```
+d. Click "Save"
+e. Select "Build Now" from the left menu 
+f. Make sure the build run successfully(each step will turn to green color)
+
