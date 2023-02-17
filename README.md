@@ -1,4 +1,4 @@
-# Home Assignment for the Junior applicatioan integration role
+# Ci Cd PipeLine With Jenkins
 
 ## Step 1: build a Jenkins server on AWS env using EC2
 
